@@ -1,0 +1,53 @@
+name: Migrating Java Application
+ 
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'Spring-Java11/**'
+
+
+  
+jobs:
+  build:
+    runs-on: self-hosted
+ 
+    steps:
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'adopt'
+        java-version: '17'
+
+    - name: rewrite code
+      run: |
+        sudo apt install maven -y
+        mvn -version
+        cd Spring-Java11
+        mvn install
+        mvn rewrite:run
+
+    - name: Configure Git identity
+      run: |
+        git config --global user.email "mahorjitendra@gmail.com"
+        git config --global user.name "jeet041"
+
+    - name: Check if folder exists and move files
+      run: |
+        if [ ! -d "migrated-folder" ]; then
+          mkdir migrated-folder
+          mv Spring-Java11/* migrated-folder/  # Moves files from specific-folder to new-folder
+          cd ./migrated-folder
+          git add .
+          git commit -m "Move files to new folder"
+          git push origin master  # Pushes changes to the master branch
+        else
+          echo " migrated-folder already exists, skipping move operation"
+        fi
+    
+ 
+    # - name: Compile Java files
+    #   run: |
+    #     javac *.java
+    #   working-directory: ./migrated-folder/src
