@@ -20,7 +20,7 @@ jobs:
       run: |
         sudo apt install maven -y
         mvn -version
-        # cd Spring-Java11
+        cd Spring-Java11-mvc
         mvn install
         mvn rewrite:run
 
@@ -33,7 +33,7 @@ jobs:
       run: |
         if [ ! -d "migrated-folder" ]; then
           mkdir migrated-folder
-          mv * migrated-folder/  # Moves files from specific-folder to new-folder
+          mv Spring-Java11-mvc/* migrated-folder/  # Moves files from specific-folder to new-folder
           cd ./migrated-folder
           git add .
           git commit -m "Move files to new folder"
