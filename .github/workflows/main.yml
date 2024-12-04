@@ -12,13 +12,19 @@ jobs:
     runs-on: ubuntu-latest
  
     steps:
+    # Step 1: Checkout code
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # Step 2: Set up JDK
     - name: Set up JDK
       uses: actions/setup-java@v3
       with:
         distribution: 'adopt'
         java-version: '17'
 
-    - name: rewrite code
+    # Step 3: Rewrite code
+    - name: Rewrite code
       run: |
         sudo apt install maven -y
         mvn -version
@@ -26,11 +32,13 @@ jobs:
         mvn install
         mvn rewrite:run
 
+    # Step 4: Configure Git identity
     - name: Configure Git identity
       run: |
         git config --global user.email "mahorjitendra@gmail.com"
         git config --global user.name "jeet041"
 
+    # Step 5: Check if folder exists and move files
     - name: Check if folder exists and move files
       run: |
         if [ ! -d "migrated-folder" ]; then
@@ -43,9 +51,3 @@ jobs:
         else
           echo " migrated-folder already exists, skipping move operation"
         fi
-    
- 
-    # - name: Compile Java files
-    #   run: |
-    #     javac *.java
-    #   working-directory: ./migrated-folder/src
