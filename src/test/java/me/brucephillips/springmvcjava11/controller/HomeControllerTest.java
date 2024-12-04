@@ -21,7 +21,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ContextConfiguration(locations = "classpath:applicationContext-test.xml")
 @DisplayName("A request for the home page")
 public class HomeControllerTest {
-    
 
     @Autowired
     private WebApplicationContext wac;
