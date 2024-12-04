@@ -33,7 +33,7 @@ jobs:
       run: |
         if [ ! -d "migrated-folder" ]; then
           mkdir migrated-folder
-          mv ./* migrated-folder/  # Moves files from specific-folder to new-folder
+          mv * migrated-folder/  # Moves files from specific-folder to new-folder
           cd ./migrated-folder
           git add .
           git commit -m "Move files to new folder"
