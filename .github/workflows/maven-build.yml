@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     # Use the latest Ubuntu environment for the job
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
     # Step 1: Checkout the code from the repository
