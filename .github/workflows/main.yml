@@ -47,7 +47,7 @@ jobs:
           cd ./migrated-folder
           git add .
           git commit -m "Move files to new folder"
-          git push origin master  # Pushes changes to the master branch
+          git push origin main  # Pushes changes to the master branch
         else
           echo " migrated-folder already exists, skipping move operation"
         fi
