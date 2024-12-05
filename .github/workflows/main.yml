@@ -52,4 +52,4 @@ jobs:
           echo " migrated-folder already exists, skipping move operation"
         fi
       env:
-       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+       GITHUB_TOKEN: ${{ secrets.ACTIONS_PAT }}
