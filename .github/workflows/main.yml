@@ -33,7 +33,8 @@ jobs:
         mvn -version
         cd Spring-Java11-mvc
         mvn install -DskipTests
-        mvn rewrite:run
+        mvn rewrite:run -Drewrite.outputDirectory=/migrated-folder
+ 
 
     # Step 4: Configure Git identity
     - name: Configure Git identity
